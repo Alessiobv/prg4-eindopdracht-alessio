@@ -1,31 +1,47 @@
 import '../css/style.css'
 import { Actor, Engine, Vector, DisplayMode } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
+import { Fish } from './fish.js'
+import { Bones } from './bones.js'
+import { Shark } from './shark.js'
 
 export class Game extends Engine {
 
     constructor() {
-        super({ 
+        super({
             width: 1280,
             height: 720,
             maxFps: 60,
             displayMode: DisplayMode.FitScreen
-         })
+        })
         this.start(ResourceLoader).then(() => this.startGame())
     }
 
     startGame() {
-        console.log("start de game!")
-        const fish = new Actor()
-        fish.graphics.use(Resources.Fish.toSprite())
-        fish.pos = new Vector(500, 300)
-        fish.vel = new Vector(-10,0)
-        fish.events.on("exitviewport", (e) => this.fishLeft(e))
-        this.add(fish)
-    }
+        const background = new Actor({
+            pos: new Vector(640, 360)
+        })
+        background.graphics.use(
+            Resources.Background.toSprite()
+        )
+        background.scale = new Vector(1, 1)
+        
+        this.add(background)
+        
+        for (let i = 0; i < 30; i++) {
+            const fish = new Fish()
+            this.add(fish)
+        }
 
-    fishLeft(e) {
-        e.target.pos = new Vector(1350, 300)
+        for (let i = 0; i < 40; i++) {
+            const bones = new Bones()
+            this.add(bones)
+        }
+
+        for (let i = 0; i < 15; i++) {
+            const shark = new Shark()
+            this.add(shark)
+        }
     }
 }
 
