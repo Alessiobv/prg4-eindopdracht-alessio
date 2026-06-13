@@ -1,4 +1,4 @@
-﻿import { Actor, Keys, Vector, SpriteSheet, Animation } from "excalibur"
+﻿import { Actor, Keys, Vector, SpriteSheet, Animation, CollisionType } from "excalibur"
 import { Resources } from "../resources.js"
 
 export class Player extends Actor {
@@ -12,7 +12,7 @@ export class Player extends Actor {
             pos: new Vector(x, y),
             width: 32,
             height: 32,
-            collisionType: 'Active'
+            collisionType: CollisionType.Active
         })
 
         this.speed = 150;
@@ -132,5 +132,20 @@ export class Player extends Actor {
         } else if (this.pos.y > mapHeight - halfHeight){
             this.pos.y = mapHeight - halfHeight;
         }
+    }
+
+    takeDamage(amount) {
+        this.health -= amount;
+
+        console.log(`Player HP: ${this.health}`);
+
+        if (this.health <= 0) {
+            this.die();
+        }
+    }
+
+    die() {
+        console.log("Player died");
+        this.kill();
     }
 }
