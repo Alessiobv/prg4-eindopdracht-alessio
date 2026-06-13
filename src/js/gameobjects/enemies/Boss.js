@@ -20,26 +20,26 @@ export class Boss extends Enemy {
 
         const frame0 = new Sprite({
             image: image,
-            sourceView: { x: 48, y: 100, width: 120, height: 120 },
-            destSize: { width: 120, height: 120 }
+            sourceView: { x: 48, y: 100, width: 100, height: 100 },
+            destSize: { width: 100, height: 100 }
         })
 
         const frame1 = new Sprite({
             image: image,
-            sourceView: { x: 240, y: 100, width: 120, height: 120 },
-            destSize: { width: 120, height: 120 }
+            sourceView: { x: 240, y: 100, width: 100, height: 100 },
+            destSize: { width: 100, height: 100 }
         })
 
         const frame2 = new Sprite({
             image: image,
-            sourceView: { x: 435, y: 100, width: 120, height: 120 },
-            destSize: { width: 120, height: 120 }
+            sourceView: { x: 435, y: 100, width: 100, height: 100 },
+            destSize: { width: 100, height: 100 }
         })
 
         const frame3 = new Sprite({
             image: image,
-            sourceView: { x: 630, y: 100, width: 120, height: 120 },
-            destSize: { width: 120, height: 120 }
+            sourceView: { x: 630, y: 100, width: 100, height: 100 },
+            destSize: { width: 100, height: 100 }
         })
 
         this.animations = {

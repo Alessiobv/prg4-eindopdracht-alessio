@@ -60,7 +60,7 @@ export class SpawnManager {
             y = Math.random() * mapSize
         }
 
-        const types = [Boss]
+        const types = [TreeMS1, TreeMS2, TreeMS3, TreeMB1, TreeMB2, TreeMB3, Boss]
         const EnemyClass = types[Math.floor(Math.random() * types.length)]
 
         console.log("SPAWNING:", EnemyClass.name)
