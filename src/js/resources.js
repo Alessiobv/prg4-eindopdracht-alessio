@@ -2,11 +2,12 @@ import { ImageSource, Sound, Resource, Loader } from 'excalibur'
 
 // voeg hier jouw eigen resources toe
 const Resources = {
-    Fish: new ImageSource('images/fish.png'),
-    Shark: new ImageSource('images/shark.png'),
-    Bones: new ImageSource('images/bones.png'),
-    Bubble: new ImageSource('images/bubble.png'),
-    Background: new ImageSource('images/water.jpg')
+    Background: new ImageSource('images/BackgroundZelda.png'),
+    LinkAttack: new ImageSource('images/LinkAttackSprite.png'),
+    LinkDownWalk: new ImageSource('images/LinkDownWalk.png'),
+    LinkUpWalk: new ImageSource('images/LinkUpWalking.png'),
+    LinkLeftWalk: new ImageSource('images/LinkLeftWalking.png'),
+    LinkIdle: new ImageSource('images/LinkStandingStill.png')
 }
 
 

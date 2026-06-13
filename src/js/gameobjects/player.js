@@ -1,0 +1,108 @@
+﻿import { Actor, Keys, Vector, SpriteSheet, Animation } from "excalibur"
+import { Resources } from "../resources.js"
+
+export class Player extends Actor {
+
+    player
+    score = 0
+    health = 100
+    swimSpeed = 200
+
+    constructor(x, y) {
+        super({
+            pos: new Vector(x, y),
+            width: 32,
+            height: 32,
+            collisionType: 'Active'
+        })
+
+        this.speed = 150;
+        this.facing = 'down';
+    }
+
+    onInitialize() {
+        const downSheet = SpriteSheet.fromImageSource({
+            image: Resources.LinkDownWalk,
+            grid: { rows: 1, columns: 10, spriteWidth: 32, spriteHeight: 32 }
+        });
+        const upSheet = SpriteSheet.fromImageSource({
+            image: Resources.LinkUpWalk,
+            grid: { rows: 1, columns: 10, spriteWidth: 32, spriteHeight: 32 }
+        });
+        const leftSheet = SpriteSheet.fromImageSource({
+            image: Resources.LinkLeftWalk,
+            grid: { rows: 1, columns: 10, spriteWidth: 32, spriteHeight: 32 }
+        });
+        const idleSheet = SpriteSheet.fromImageSource({
+            image: Resources.LinkIdle,
+            grid: { rows: 1, columns: 3, spriteWidth: 32, spriteHeight: 32 }
+        });
+        
+        this.animations = {
+            walkDown: Animation.fromSpriteSheet(downSheet, [0, 1, 2, 3, 4], 120),
+            walkUp: Animation.fromSpriteSheet(upSheet, [0, 1, 2, 3, 4], 120),
+            walkLeft: Animation.fromSpriteSheet(leftSheet, [0, 1, 2, 3, 4], 120),
+        
+            idleDown: Animation.fromSpriteSheet(idleSheet, [0], 100),
+            idleLeft: Animation.fromSpriteSheet(idleSheet, [1], 100),
+            idleUp: Animation.fromSpriteSheet(idleSheet, [2], 100),
+        };
+        
+        this.graphics.use(this.animations.idleDown);
+    }
+    onPreUpdate(engine, delta) {
+        this.vel = Vector.Zero;
+        const kb = engine.input.keyboard;
+        let moving = false;
+        
+        if (kb.isHeld(Keys.ArrowLeft) || kb.isHeld(Keys.A)) {
+            this.vel.x = -this.speed;
+            this.facing = 'left';
+            moving = true;
+        } else if (kb.isHeld(Keys.ArrowRight) || kb.isHeld(Keys.D)) {
+            this.vel.x = this.speed;
+            this.facing = 'right';
+            moving = true;
+        }
+        
+        if (kb.isHeld(Keys.ArrowUp) || kb.isHeld(Keys.W)) {
+            this.vel.y = -this.speed;
+            this.facing = 'up';
+            moving = true;
+        } else if (kb.isHeld(Keys.ArrowDown) || kb.isHeld(Keys.S)) {
+            this.vel.y = this.speed;
+            this.facing = 'down';
+            moving = true;
+        }
+        
+        if (moving) {
+            if (this.facing === 'left') {
+                this.graphics.use(this.animations.walkLeft);
+                this.graphics.flipHorizontal = false;
+            } else if (this.facing === 'right') {
+                this.graphics.use(this.animations.walkLeft);
+                this.graphics.flipHorizontal = true;
+            } else if (this.facing === 'up') {
+                this.graphics.use(this.animations.walkUp);
+                this.graphics.flipHorizontal = false;
+            } else if (this.facing === 'down') {
+                this.graphics.use(this.animations.walkDown);
+                this.graphics.flipHorizontal = false;
+            }
+        } else {
+            if (this.facing === 'left') {
+                this.graphics.use(this.animations.idleLeft);
+                this.graphics.flipHorizontal = false;
+            } else if (this.facing === 'right') {
+                this.graphics.use(this.animations.idleLeft);
+                this.graphics.flipHorizontal = true;
+            } else if (this.facing === 'up') {
+                this.graphics.use(this.animations.idleUp);
+                this.graphics.flipHorizontal = false;
+            } else if (this.facing === 'down') {
+                this.graphics.use(this.animations.idleDown);
+                this.graphics.flipHorizontal = false;
+            }
+        }
+    }
+}
