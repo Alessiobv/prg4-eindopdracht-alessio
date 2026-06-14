@@ -9,7 +9,8 @@ export class Boss extends Enemy {
             hp: 250,
             speed: 60,
             width: 100,
-            height: 100
+            height: 100,
+            ammoDrop: 20
         })
     }
 

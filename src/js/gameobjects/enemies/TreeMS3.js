@@ -9,7 +9,8 @@ export class TreeMS3 extends Enemy {
             hp: 10,
             speed: 120,
             width: 40,
-            height: 40
+            height: 40,
+            ammoDrop: 5
         })
     }
 

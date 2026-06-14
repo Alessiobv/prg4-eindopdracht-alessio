@@ -40,13 +40,17 @@ export class LevelOne extends Scene {
         engine.input.pointers.primary.on('down', () => {
             if (this.gameOver) return
             
+            if (this.player.ammo <= 0) return
+            
+            this.player.ammo--
+            
             const spawnOffset = this.player.facingVector.scale(24)
 
             const bullet = new Bullet(
                 this.player.pos.x + spawnOffset.x,
                 this.player.pos.y + spawnOffset.y,
                 this.player.facingVector
-            );
+            )
 
             this.add(bullet)
         })

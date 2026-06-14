@@ -9,6 +9,7 @@ const Resources = {
     LinkUpWalk: new ImageSource('./images/LinkUpWalking.png'),
     LinkLeftWalk: new ImageSource('./images/LinkLeftWalking.png'),
     LinkIdle: new ImageSource('./images/LinkStandingStill.png'),
+    AmmoImage: new ImageSource('./images/Ammo.png'),
     
     TreeMonSmallOne: new ImageSource('./images/TreeMS1.png'),
     TreeMonSmallOneAttack: new ImageSource('./images/TreeMS1A.png'),

@@ -25,10 +25,10 @@ export class Bullet extends Actor {
     onInitialize(engine){
         const attackSheet = SpriteSheet.fromImageSource({
             image: Resources.LinkAttack,
-            grid: { rows: 1, columns: 4, spriteWidth: 16, spriteHeight: 16 }
+            grid: { rows: 1, columns: 5, spriteWidth: 16, spriteHeight: 16 }
         })
 
-        const attackAnimation = Animation.fromSpriteSheet(attackSheet, [0, 1, 2, 3], 80)
+        const attackAnimation = Animation.fromSpriteSheet(attackSheet, [0, 1, 2, 3, 4], 80)
         attackAnimation.anchor = new Vector(0.5, 0.5)
         this.graphics.use(attackAnimation)
         this.actions.delay(2000).die()

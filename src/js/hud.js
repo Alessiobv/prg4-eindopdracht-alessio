@@ -22,8 +22,22 @@ export class HUD {
 
         this.hpLabel.addChild(this.hpText)
 
-        this.scoreLabel = new ScreenElement({
+        this.ammoLabel = new ScreenElement({
             pos: new Vector(20, 50)
+        })
+
+        this.ammoText = new Label({
+            text: "Ammo: 20",
+            font: new Font({
+                size: 24,
+                color: Color.Orange
+            })
+        })
+
+        this.ammoLabel.addChild(this.ammoText)
+
+        this.scoreLabel = new ScreenElement({
+            pos: new Vector(20, 80)
         })
 
         this.scoreText = new Label({
@@ -37,7 +51,7 @@ export class HUD {
         this.scoreLabel.addChild(this.scoreText)
         
         this.hsLabel = new ScreenElement({
-            pos: new Vector(20, 80)
+            pos: new Vector(20, 110)
         })
         
         this.hsText = new Label({
@@ -51,12 +65,14 @@ export class HUD {
         this.hsLabel.addChild(this.hsText)
 
         this.scene.add(this.hpLabel)
+        this.scene.add(this.ammoLabel)
         this.scene.add(this.scoreLabel)
         this.scene.add(this.hsLabel)
     }
 
     update() {
         this.hpText.text = `HP: ${this.player.health}`
+        this.ammoText.text = `Ammo: ${this.player.ammo}`
         this.scoreText.text = `Score: ${this.player.score}`
         this.hsText.text = `HS: ${Number(localStorage.getItem("highscore") ?? 0)}`
     }

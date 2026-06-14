@@ -7,6 +7,8 @@ export class Player extends Actor {
     dead = false
     score = 0
     health = 100
+    ammo = 20
+    maxAmmo = 100
 
     constructor(x, y) {
         super({
@@ -163,5 +165,9 @@ export class Player extends Actor {
         this.scene.triggerGameOver(this.score)
         console.log("Player Died")
         this.kill()
+    }
+    
+    addAmmo(amount){
+        this.ammo = Math.min(this.ammo + amount, this.maxAmmo)
     }
 }

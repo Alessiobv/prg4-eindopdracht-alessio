@@ -1,4 +1,5 @@
 ﻿import { Actor, Vector, CollisionType } from "excalibur"
+import { AmmoPickup } from "./ammoPickup.js"
 
 export class Enemy extends Actor {
     constructor(x, y, config) {
@@ -9,6 +10,7 @@ export class Enemy extends Actor {
             collisionType: config.collisionType || CollisionType.Active
         })
 
+        this.ammoDrop = config.ammoDrop || 5
         this.hp = config.hp || 10
         this.speed = config.speed || 50
         this.playerInContact = false
@@ -102,6 +104,13 @@ export class Enemy extends Actor {
 
         if (player?.addScore) {
             player.addScore(this.getScoreValue())
+        }
+        
+        const dropChance = 0.5
+        
+        if (Math.random() < dropChance){
+            const ammoPickup = new AmmoPickup(this.pos.x, this.pos.y, this.ammoDrop)
+            this.scene.add(ammoPickup)
         }
 
         this.kill()
